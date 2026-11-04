@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Account {
     private int accountID;
@@ -11,14 +12,14 @@ public class Account {
         totalAccounts += 1;
     }
 
-    public Account(int accountID, String accountName, BigDecimal balance){
+    private Account(int accountID, String accountName, BigDecimal balance){
         this.setAccountId(accountID);
         this.setAccountName(accountName);
         this.balance = balance;
     }
 
     public void setAccountName(String name){
-        if(name == null || name == "") throw new IllegalArgumentException("Name cannot be empty");
+        if(name == null || name.isBlank()) throw new IllegalArgumentException("Name cannot be empty");
         this.accountName = name;
     }
 
@@ -33,12 +34,11 @@ public class Account {
 
     public void deposit(BigDecimal amount){
         if (amount.signum() <= 0) throw new IllegalArgumentException("Amount must be positive");
-        System.out.println(amount.signum());
-        this.balance = this.balance.add(amount);
+        this.balance = this.balance.add(amount).setScale(2,RoundingMode.HALF_UP);
     }
 
     public void withdraw(BigDecimal amount){
-        if(amount.compareTo(this.balance) > 0) throw new IllegalArgumentException("Insufficient funds");
+        if(amount.compareTo(this.balance) > 0 || amount.signum() <=0 ) throw new IllegalArgumentException("Insufficient funds or amount is Invalid");
         this.balance = this.balance.subtract(amount);
     }
 

@@ -12,6 +12,8 @@ class Main{
         System.out.println(account1.toString());
         account1.withdraw(new BigDecimal("54.55"));
         System.out.println(account1.toString());
+        account1.withdraw(new BigDecimal("60"));
+        System.out.println(account1.toString());
 
     }
 }
