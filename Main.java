@@ -10,6 +10,8 @@ class Main{
         System.out.println(account1.getBalance());
         System.out.println("Total accounts: " + Account.totalAccounts);
         System.out.println(account1.toString());
+        account1.withdraw(new BigDecimal("54.55"));
+        System.out.println(account1.toString());
 
     }
 }
