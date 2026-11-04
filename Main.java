@@ -8,6 +8,8 @@ class Main{
         System.out.println(account1.getBalance());
         account1.deposit(new BigDecimal("676.985"));
         System.out.println(account1.getBalance());
+        System.out.println("Total accounts: " + Account.totalAccounts);
+        System.out.println(account1.toString());
 
     }
 }
